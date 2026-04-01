@@ -30,6 +30,8 @@ namespace Topic_5___Making_a_Class
 
         List<Texture2D> ghostTextures;
 
+        List<Ghost> ghosts;
+
         Texture2D marioTexture;
         Texture2D titleScreenTexture;
         Texture2D endScreenTexture;
@@ -51,17 +53,23 @@ namespace Topic_5___Making_a_Class
 
             ghostTextures = new List<Texture2D>();
 
+            ghosts = new List<Ghost>();
+
+            generator = new Random();
+
             window = new Rectangle(0,0,800,600);
             _graphics.PreferredBackBufferWidth = window.Width;
             _graphics.PreferredBackBufferHeight = window.Height;
             _graphics.ApplyChanges();
 
-            ghost1 = new Ghost(ghostTextures, new Rectangle(150,250,40,40));
             marioRect = new Rectangle(0, 0, 20,20);
 
             screen = Screen.Title;
 
             base.Initialize();
+            
+            for (int i = 0; i < 20; i++)
+                ghosts.Add(new Ghost(ghostTextures, new Rectangle(generator.Next(500), generator.Next(500), 40, 40)));
         }
 
         protected override void LoadContent()

@@ -12,6 +12,7 @@ namespace Topic_5___Making_a_Class
     public class Ghost
     {
         private List<Texture2D> _textures;
+        private List<Ghost> ghosts;
         private Vector2 _speed;
         private Rectangle _location;
         private int _textureIndex;
@@ -19,8 +20,10 @@ namespace Topic_5___Making_a_Class
         private float _animationSpeed;
         private float _seconds;
         private float _Opacity;
+        private List<Texture2D> ghostTextures;
+        private Rectangle rectangle;
 
-        public Ghost(List<Texture2D> textures, Rectangle location)
+        public Ghost(List<Texture2D> textures, Rectangle location, List<Ghost> ghosts)
         {
             _textures = textures;
             _textureIndex = 0;
@@ -30,6 +33,13 @@ namespace Topic_5___Making_a_Class
             _animationSpeed = 0.2f;
             _seconds = 0;
             _Opacity = 1f;
+            
+        }
+
+        public Ghost(List<Texture2D> ghostTextures, Rectangle rectangle)
+        {
+            this.ghostTextures = ghostTextures;
+            this.rectangle = rectangle;
         }
 
         public void Update(GameTime gameTime, MouseState mouseState)
@@ -62,7 +72,8 @@ namespace Topic_5___Making_a_Class
                 _textureIndex = 0;
                 _seconds = 0;
                 _Opacity = 0.3f;
-                if (mouseState.LeftButton == butteon)
+                if (mouseState.LeftButton == ButtonState.Released)
+                    _Opacity = 1f;
             }
             else if (_speed != Vector2.Zero)
             {
