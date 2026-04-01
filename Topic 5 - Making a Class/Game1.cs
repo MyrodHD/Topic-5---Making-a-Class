@@ -106,9 +106,14 @@ namespace Topic_5___Making_a_Class
             }
             else if (screen == Screen.House)
             {
-                ghost1.Update(gameTime, mouseState);
-                if (ghost1.Contains(mouseState.Position) && mouseState.LeftButton == ButtonState.Pressed)
-                    screen = Screen.End;
+                for(int i = 0; i < ghosts.Count; i++)
+                {
+                    ghosts[i].Update(gameTime, mouseState);
+                    if (ghosts[i].Contains(mouseState.Position) && mouseState.LeftButton == ButtonState.Pressed)
+                        screen = Screen.End;
+                }
+
+ 
             }
 
                 base.Update(gameTime);
@@ -125,11 +130,12 @@ namespace Topic_5___Making_a_Class
             if (screen == Screen.Title)
                 _spriteBatch.Draw(titleScreenTexture, window, Color.White);
 
-            if (screen == Screen.House)
+            else if (screen == Screen.House)
             {
                 _spriteBatch.Draw(mainBackgroundTexture, window, Color.White);
 
-                ghost1.Draw(_spriteBatch);
+                for (int i = 0; i < ghosts.Count; i++)
+                    ghosts[i].Draw(_spriteBatch);
 
                 _spriteBatch.Draw(marioTexture, marioRect, Color.White);
             }

@@ -65,9 +65,13 @@ namespace Topic_5___Making_a_Class
                 _textureIndex = 0;
                 _seconds = 0;
                 _Opacity = 0.3f;
-                if (mouseState.LeftButton == ButtonState.Released)
-                    _Opacity = 1f;
             }
+
+            if (mouseState.LeftButton == ButtonState.Released && _Opacity == 0.3f)
+            {
+                _Opacity = 1f;
+            }
+
             else if (_speed != Vector2.Zero)
             {
                 _seconds += (float)gameTime.ElapsedGameTime.TotalSeconds;
